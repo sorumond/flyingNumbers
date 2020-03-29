@@ -1,0 +1,24 @@
+form {
+    border: 1px solid black;
+    width: 500px;
+    height: 500px;
+    margin: 0 auto;
+}
+
+.container {
+    position: relative;
+}
+
+input[type="input"] {
+    border: none;
+}
+
+label {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition-property: top, left;
+    transition-timing-function: linear;
+    transition-duration: 2s;
+}

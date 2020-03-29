@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./index.css">
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<form class="container" action="">
+    <span>Please enter your phone number:</span>
+    <br>
+    <input type="input" value="+(___)___-____" maxlength="10">
+    <button type="submit">submit</button>
+    <button type="reset">reset</button>
+    <br>
+    <br>
+
+    <div class="weird-shit">
+        <label class="label" for="">
+            1<input type="radio" value="1">
+        </label>
+        <label class="label" for="">
+            2<input type="radio" value="2">
+        </label>
+        <label class="label" for="">
+            3<input type="radio" value="3">
+        </label>
+        <label class="label" for="">
+            4<input type="radio" value="4">
+        </label>
+        <label class="label" for="">
+            5<input type="radio" value="5">
+        </label>
+        <label class="label" for="">
+            6<input type="radio" value="6">
+        </label>
+        <label class="label" for="">
+            7<input type="radio" value="7">
+        </label>
+        <label class="label" for="">
+            8<input type="radio" value="8">
+        </label>
+        <label class="label" for="">
+            9<input type="radio" value="9">
+        </label>
+    </div>
+</form>
+</body>
+</html>
+
+
+<script>
+    $('input[type="radio"]').click(() => {
+        $('input[type="input"]').val($('input[type="input"]').val().replace(/_/, event.target.value));
+        $(event.target).prop('checked', false);
+    })
+</script>
+
+<script>
+    let labels = document.querySelectorAll('.label');
+    let container = document.querySelector('.container');
+    let easingArr = [`cubic-bezier(0.47, 0, 0.745, 0.715)`,
+        `cubic-bezier(0.39, 0.575, 0.565, 1)`,
+        `cubic-bezier(0.445, 0.05, 0.55, 0.95)`,
+        `cubic-bezier(0.55, 0.085, 0.68, 0.53)`,
+        `cubic-bezier(0.25, 0.46, 0.45, 0.94)`,
+        `cubic-bezier(0.455, 0.03, 0.515, 0.955)`,
+        `cubic-bezier(0.55, 0.055, 0.675, 0.19)`,
+        `cubic-bezier(0.215, 0.61, 0.355, 1)`,
+        `cubic-bezier(0.645, 0.045, 0.355, 1)`,
+        `cubic-bezier(0.895, 0.03, 0.685, 0.22)`,
+        `cubic-bezier(0.165, 0.84, 0.44, 1)`,
+        `cubic-bezier(0.77, 0, 0.175, 1)`,
+        `cubic-bezier(0.755, 0.05, 0.855, 0.06)`,
+        `cubic-bezier(0.23, 1, 0.32, 1)`,
+        `cubic-bezier(0.86, 0, 0.07, 1)`,
+        `cubic-bezier(0.95, 0.05, 0.795, 0.035)`,
+        `cubic-bezier(0.19, 1, 0.22, 1)`,
+        `cubic-bezier(1, 0, 0, 1)`,
+        `cubic-bezier(0.6, 0.04, 0.98, 0.335)`,
+        `cubic-bezier(0.075, 0.82, 0.165, 1)`,
+        `cubic-bezier(0.785, 0.135, 0.15, 0.86)`,
+        `cubic-bezier(0.6, -0.28, 0.735, 0.045)`,
+        `cubic-bezier(0.175, 0.885, 0.32, 1.275)`,
+        `cubic-bezier(0.68, -0.55, 0.265, 1.55)`
+        ];
+
+
+    function randomInteger(min, max) {
+        let rand = min + Math.random() * (max + 1 - min);
+        return Math.floor(rand);
+    }
+
+    function setRandomTransitionDuration() {
+        return randomInteger(1, 4);
+    }
+    
+    function setRandomTransitionEasing() {
+        console.log(easingArr[randomInteger(0, easingArr.length-1)]);
+        return easingArr[randomInteger(0, easingArr.length-1)];
+    }
+
+    function animation() {
+        for (let i = 0; i < labels.length; i++) {
+            let label = labels[i];
+            // label.style.transitionProperty = 'top, left';
+            // label.style.transitionDuration = `${setRandomTransitionDuration()}s`;
+            // label.style.transitionTimingFunction = setRandomTransitionEasing();
+            // label.style.top = `${randomInteger(0, container.offsetWidth)}px`;
+            // label.style.left = `${randomInteger(0, container.offsetWidth)}px`;
+
+            setLabelTransition(label);
+        }
+    };
+    animation();
+
+    function setLabelTransition(label) {
+        console.log('жёпа');
+        let duration = setRandomTransitionDuration() * 1000;
+        label.style.transitionProperty = 'top, left';
+        label.style.transitionDuration = `${duration}ms`;
+        label.style.transitionTimingFunction = `${setRandomTransitionEasing()}`;
+        label.style.top = `${randomInteger(0, (container.offsetWidth - label.offsetWidth))}px`;
+        label.style.left = `${randomInteger(0, (container.offsetWidth - label.offsetHeight))}px`;
+
+        setTimeout(() => {setLabelTransition(label)}, (duration));
+    }
+
+    // for (let i = 0; i < labels.length-1; i++) {
+    //     let label = labels[i];
+    //     label.addEventListener("transitionend", animation);
+    // }
+`cubic-bezier(0.47, 0, 0.745, 0.715)`,
+`cubic-bezier(0.39, 0.575, 0.565, 1)`,
+`cubic-bezier(0.445, 0.05, 0.55, 0.95)`,
+`cubic-bezier(0.55, 0.085, 0.68, 0.53)`,
+`cubic-bezier(0.25, 0.46, 0.45, 0.94)`,
+`cubic-bezier(0.455, 0.03, 0.515, 0.955)`,
+`cubic-bezier(0.55, 0.055, 0.675, 0.19)`,
+`cubic-bezier(0.215, 0.61, 0.355, 1)`,
+`cubic-bezier(0.645, 0.045, 0.355, 1)`,
+`cubic-bezier(0.895, 0.03, 0.685, 0.22)`,
+`cubic-bezier(0.165, 0.84, 0.44, 1)`,
+`cubic-bezier(0.77, 0, 0.175, 1)`,
+`cubic-bezier(0.755, 0.05, 0.855, 0.06)`,
+`cubic-bezier(0.23, 1, 0.32, 1)`,
+`cubic-bezier(0.86, 0, 0.07, 1)`,
+`cubic-bezier(0.95, 0.05, 0.795, 0.035)`,
+`cubic-bezier(0.19, 1, 0.22, 1)`,
+`cubic-bezier(1, 0, 0, 1)`,
+`cubic-bezier(0.6, 0.04, 0.98, 0.335)`,
+`cubic-bezier(0.075, 0.82, 0.165, 1)`,
+`cubic-bezier(0.785, 0.135, 0.15, 0.86)`,
+`cubic-bezier(0.6, -0.28, 0.735, 0.045)`,
+`cubic-bezier(0.175, 0.885, 0.32, 1.275)`,
+`cubic-bezier(0.68, -0.55, 0.265, 1.55)`
+
+</script>
+
